@@ -1,1 +1,3 @@
-# AI20-DOC
+# RMIT AI20 Documentation
+
+* [Pacman FAQ](FAQ-PACMAN.md)
