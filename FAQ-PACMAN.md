@@ -17,9 +17,7 @@ Check the [answer to this key question here](https://docs.google.com/document/d/
 
 If you see something like this:
 
-
-
-<img src="/redirect/s3?bucket=uploads&prefix=paste%2Fjkjg7x4qc627lc%2F6d368833fd2c40f31c706f782cf943e05555caceba45cd64a5b2cb25e6512655%2Fpermission-google.png" width="583" height="164" alt="" />
+![google-form][img/permission-google.png]
 
 then chances are you are not correctly logged into your RMIT account or you are logged with your private Google account and your browser cannot distinguish. Either open it on an incognito browser window or make sure you are logged into your RMIT account. There is nothing I can do from my side if you don&rsquo;t access the form with the right authentication credentials.
 
