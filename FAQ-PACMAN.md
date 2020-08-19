@@ -5,6 +5,45 @@ This is the FAQ only for the project assessments (i.e., pacman) projects. For ge
 As any FAQ page, this page is always "under construction". As we realize that some questions become common, we add them here.
 
 
+Table of Contents
+=================
+
+   * [FAQ - Pacman Projects - RMIT AI 2020](#faq---pacman-projects---rmit-ai-2020)
+   * [GENERAL](#general)
+      * [In a code assignment/project, how do I make sure I do not go against academic integrity?](#in-a-code-assignmentproject-how-do-i-make-sure-i-do-not-go-against-academic-integrity)
+      * [Cannot access the Google Form, says I need permission](#cannot-access-the-google-form-says-i-need-permission)
+      * [How do I submit my project solution in my GIT repository?](#how-do-i-submit-my-project-solution-in-my-git-repository)
+      * [How do I change the submission tag if I have already tagged one commit for submission?](#how-do-i-change-the-submission-tag-if-i-have-already-tagged-one-commit-for-submission)
+      * [I submitted wrongly (e.g., didn't tag correctly) and is now after the due date, can you consider my submission?](#i-submitted-wrongly-eg-didnt-tag-correctly-and-is-now-after-the-due-date-can-you-consider-my-submission)
+      * [How do I zip files in folder X without including the folder X itself?](#how-do-i-zip-files-in-folder-x-without-including-the-folder-x-itself)
+   * [PACMAN SETUP](#pacman-setup)
+      * [What is the best way to develop my solutions for the Pacman project?](#what-is-the-best-way-to-develop-my-solutions-for-the-pacman-project)
+      * [What version of Python should I use?](#what-version-of-python-should-i-use)
+      * [How do I run Python 3.6 in coreteaching?](#how-do-i-run-python-36-in-coreteaching)
+      * [How to run Pacman remotely from coreteaching?](#how-to-run-pacman-remotely-from-coreteaching)
+      * [Coreteaching? What is that?](#coreteaching-what-is-that)
+      * [How do I setup a system in Windows with Python 3.6?](#how-do-i-setup-a-system-in-windows-with-python-36)
+   * [TROUBLESHOOTING](#troubleshooting)
+      * [Can I use problem._visited?](#can-i-use-problem_visited)
+      * [I get "_tkinter.TclError: no display name and no $DISPLAY environment variable" error when running in WSL or ssh](#i-get-_tkintertclerror-no-display-name-and-no-display-environment-variable-error-when-running-in-wsl-or-ssh)
+      * [Cannot run Pacman due to problems with Tkinter: "ImportError: No module named Tkinter"](#cannot-run-pacman-due-to-problems-with-tkinter-importerror-no-module-named-tkinter)
+      * [How do I know the type of a variable in Python?](#how-do-i-know-the-type-of-a-variable-in-python)
+      * [Error module 'cgi' has no attribute 'escape' when running autograder.pt](#error-module-cgi-has-no-attribute-escape-when-running-autograderpt)
+   * [Project 1](#project-1)
+      * [What actions should I return in the search algorithms?](#what-actions-should-i-return-in-the-search-algorithms)
+      * [I am getting too many expansions. What counts as an expansion?](#i-am-getting-too-many-expansions-what-counts-as-an-expansion)
+   * [Project 2](#project-2)
+      * [Inconsistent depth in minimax project 2, Q2 and careful use of __init__](#inconsistent-depth-in-minimax-project-2-q2-and-careful-use-of-__init__)
+   * [Capture the Flag](#capture-the-flag)
+      * [How to load my additional files beyond myTeam.py?](#how-to-load-my-additional-files-beyond-myteampy)
+      * [How can I use the FF planner (or any other binary) you provide?](#how-can-i-use-the-ff-planner-or-any-other-binary-you-provide)
+      * [Do you provide library X (e.g., tensorflow)?](#do-you-provide-library-x-eg-tensorflow)
+      * [Games go too fast! What should I do?](#games-go-too-fast-what-should-i-do)
+      * [How do I replay a game?](#how-do-i-replay-a-game)
+      * [How does one check if a given agent is currently scared? Is the only option to check the number of capsules in previous states?](#how-does-one-check-if-a-given-agent-is-currently-scared-is-the-only-option-to-check-the-number-of-capsules-in-previous-states)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 -------------------------
 
 # GENERAL
@@ -17,7 +56,7 @@ Check the [answer to this key question here](https://docs.google.com/document/d/
 
 If you see something like this:
 
-![google-form][img/permission-google.png]
+![google-form](img/permission-google.png)
 
 then chances are you are not correctly logged into your RMIT account or you are logged with your private Google account and your browser cannot distinguish. Either open it on an incognito browser window or make sure you are logged into your RMIT account. There is nothing I can do from my side if you don&rsquo;t access the form with the right authentication credentials.
 
@@ -28,7 +67,7 @@ You submit by **tagging the _exact_ commit that you want to submit and be marked
 
 Of course we do not have access to your local machine, so the tag has to be done or pushed into GitHub server repo (see below for several guides). Your tag has to show under `tags`, for example:
 
-<img src="/redirect/s3?bucket=uploads&prefix=paste%2Fjkjg7x4qc627lc%2Ff0177ade315c62a64d3cc17037460d4bdf472ca68b545aeeb8ecb12e7dc5ecf7%2Fimage.png" alt="image.png" />
+![google-form](img/tags-github-gui.png)
 
 Observe that a tag is:
 
@@ -59,9 +98,9 @@ More information on how to delete git tags [here](https://devconnected.com/how-t
 
 See this as well:
 
-<img src="/redirect/s3?bucket=uploads&prefix=paste%2Fjkjg7x4qc627lc%2F3dd53d4437a15851b5e34dcb527db5c90a5f369d137e1496f31fab4a1470c3d0%2Fimage.png" alt="image.png" />
+![google-form](img/how-to-rename-tag.png)
 
-It used to be the case that GitHub web interface did not allow deleting tags (though you could create new tags); but post @120 suggests that it is now possible to change a tag from the GitHub web interface!
+It used to be the case that GitHub web interface did not allow deleting tags (though you could create new tags); but post [@120](https://piazza.com/class/kbsmlzxg3k7418?cid=120) suggests that it is now possible to change a tag from the GitHub web interface!
 
 ## I submitted wrongly (e.g., didn't tag correctly) and is now after the due date, can you consider my submission?
 
@@ -74,14 +113,14 @@ However, the nice thing about git-based projects/assessments is that we can rely
 
 Use the `-j` option, for example:
 
-```
-zip -r -j myAgent.zip project-2/MySolution/ 
+```bash
+$ zip -r -j myAgent.zip project-2/MySolution/ 
 ```
 
 However, this is OK if you don&rsquo;t need ANY folder at all in the zip, everything in the root. If you just don&rsquo;t want the root folder included but you do want all the folders after that to be included:
 
-```
-rm -f myAgent.zip ; cd project-2/MySolution; zip -r -j ../../myAgent.zip * ; cd ..
+```bash
+$ rm -f myAgent.zip ; cd project-2/MySolution; zip -r -j ../../myAgent.zip * ; cd ..
 ```
 
 ------------------------------
@@ -109,19 +148,19 @@ The download page is [here](https://conda.io/miniconda.html) (install either the
 
 After you install Miniconda, you can create new environments via 
 
-```
+```bash
 $ conda create --name <env-name> python=3.6
 ```
 
 For example, you can do:
 
-```
+```bash
 $ conda create --name ai20 python=3.6
 ```
 
 At that point, to active your ai20 environment:
 
-```
+```bash
 $ source activate ai20
 ```
 
@@ -131,7 +170,7 @@ These commands will make your calls to `python` or `pip` run the correct version
 
 Example run (on Debian Linux, so the activation command is slightly different):
 
-```
+```bash
 marco@w8103259:~$ source activate py27
 discarding /home/marco/miniconda3/bin from PATH
 prepending /home/marco/miniconda3/envs/py27/bin to PATH
@@ -153,7 +192,7 @@ As you can see, I have python 2.7 and 3.6 coexisting peacefully in my OS."
 
 You need to activate it first using `scl`:
 
-```
+```bash
 [e62439@csitprdap01 ~]$ scl enable rh-python36 bash
 [e62439@csitprdap01 ~]$ python --version
 Python 3.6.9
@@ -170,7 +209,9 @@ If you do not care about the graphics (e.g., for grading), then try using `--tex
 
 If you do want the display, then you need to do X forwarding when you connect via ssh. If you are in Linux/Unix this is easy, just do `-X` and `-Y` when you ssh (e.g., `ssh -X -Y coreteaching01....`)
 
-If you use Windows, then you need an X server running and set your ssh client (e.g., Putty) with X forwarding. For example, check [this page](https://superuser.com/questions/119792/how-to-use-x11-forwarding-with-putty) or [this video](https://youtu.be/vwZXhTykSis):
+If you use Windows, then you need an X server running and set your ssh client (e.g., Putty) with X forwarding. For example, check [this page](https://superuser.com/questions/119792/how-to-use-x11-forwarding-with-putty) or this video:
+
+[![Alt text](https://img.youtube.com/vi/vwZXhTykSis/0.jpg)](https://www.youtube.com/watch?v=vwZXhTykSis)
 
 
 
@@ -184,38 +225,40 @@ Check [this FAQ](https://docs.google.com/document/d/12CS_7OdEmpQZiwuxDTc9PHfHan4
 
 Although we will assume you are able to install and get Python running in your machine, there are plenty of videos on that on the web. For example: 
 
-
+[![Alt text](https://img.youtube.com/vi/oHOiqFs_x8Y/0.jpg)](https://www.youtube.com/watch?v=oHOiqFs_x8Y)
 
 
 ------------------------------
 # TROUBLESHOOTING
 
-## Can I use problem._visited?
+## Can I use `problem._visited`?
 
 Under Python convention, single underscore before a name (e.g., `_visited`) denotes private data, and hence it is good practice not to rely on such data. Check [this post](https://shahriar.svbtle.com/underscores-in-python) for example. Note that such private data can change without notice, it may not be available anymore, it may not be available under other interfaces, etc. So.... 
 
-## I get "I get "_tkinter.TclError: no display name and no $DISPLAY environment variable" error when running in WSL or ssh
+## I get "`_tkinter.TclError: no display name and no $DISPLAY environment variable`" error when running in WSL or ssh
 
 If you do not care about the graphics (e.g., for grading), then try using `--textGraphics` or even `--quietTextGraphics`. 
 
 If you do want the display, then you need to do X forwarding when you connect via ssh. If you are in Linux/Unix this is easy, just do `-X` and `-Y` when you ssh (e.g., `ssh -X -Y server`).
 
-If you use Windows, then you need an X server running and set your ssh client (e.g., Putty) with X forwarding. For example, check [this page](https://superuser.com/questions/119792/how-to-use-x11-forwarding-with-putty) and [this video](https://youtu.be/vwZXhTykSis).
+If you use Windows, then you need an X server running and set your ssh client (e.g., Putty) with X forwarding. For example, check [this page](https://superuser.com/questions/119792/how-to-use-x11-forwarding-with-putty) and [this video](https://www.youtube.com/watch?v=vwZXhTykSis).
+
+
 
 Said so, for development, **we strongly suggest** to clone your repo locally on your machine and work there (e.g., using PyCharm, Visual Code Studio).
 
 
-## Cannot run Pacman due to problems with Tkinter: "ImportError: No module named Tkinter"
+## Cannot run Pacman due to problems with Tkinter: "`ImportError: No module named Tkinter`"
 
 Install Tkinter:
 
-```
+```bash
 $ conda install tk
 ```
 
 Now it should be installed, so you should not get this error. But please try the code below, it should not trigger any error:
 
-```
+```bash
 [e62439@foo~]$ scl enable rh-python36 bash
 [e62439@foo~]$ python
 Python 3.6.9 (default, Sep 11 2019, 16:40:19) 
@@ -229,7 +272,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ## How do I know the type of a variable in Python?
 
-Check [this video](https://www.youtube.com/watch?v=iROZLaQGy4s&feature=youtu.be&t=1490) to know how to print the type of a variable in Python.
+Check this video to know how to print the type of a variable in Python:
+
+[![Alt text](https://img.youtube.com/vi/iROZLaQGy4s/0.jpg)](https://www.youtube.com/watch?v=iROZLaQGy4s)
+
 
 ## Error module 'cgi' has no attribute 'escape' when running autograder.pt
 
@@ -244,7 +290,7 @@ You are probably not using Python 3.6 but a higher version. Check [this post](ht
 
 Check the actions in this class in games.py
 
-```
+```python
 class Directions:
 NORTH = 'North'
 SOUTH = 'South'
@@ -335,20 +381,20 @@ More details about super can be found [here](https://stackoverflow.com/questions
 
 Your code will be copied into a directory called teams/<your_teamname>/ in the contest package. Remember, your code will be run by the following command:
 
-```
-python3 capture.py -r teams/<team1>/myTeam.py -b teams/<team2>/myTeam.py
+```bash
+$ python3.6 capture.py -r teams/<team1>/myTeam.py -b teams/<team2>/myTeam.py
 ```
 
 This means that if you import from other files outside `myTeam.py` they will not be found unless you tell Python to look in your team dir. You can do so by having the following code on top of your `myTeam.py`:
 
-```
+```python
 import sys
 sys.path.append(&rsquo;teams/<your team>/&rsquo;)
 ```
 
 Now, the best way is to automatically obtain the folder where your file myTeam.py is located when playing the game, and then use that folder. You can do that using:
 
-```
+```python
 cd = os.path.dirname(os.path.abspath(__file__))
 ```
 
@@ -361,7 +407,7 @@ The FF planner is located in the bin/ subdirectory of the root pacman contest di
 
 Basically, if you have problem.pddl and want to write the plan into solution.txt you can do:
 
-```
+```python
 os.system("{}/../../bin/ff -o {}/domain.pddl -f {}/problem%d.pddl >
 {}/solution{}.txt".format(cd,cd,cd,self.index,cd,self.index) );
 ```
@@ -380,8 +426,8 @@ Use the `--delay-step` option. Note that option is NOT available in the standard
 
 You can play a game and use the `--record` option, you will be left with the game history to a file named by the time the game was played. You can replay these files using the `--replay` option and specifying the file to replay. You can use the `--replay-delay` to change the speed of the replay (see this is a feature in our distribution, not in the UC-Berkeley distribution). For example:
 
-```
-python capture.py --replay BBC_vs_It_depends_contest18Capture.replay --delay-step=0.1
+```bash
+$ python capture.py --replay BBC_vs_It_depends_contest18Capture.replay --delay-step=0.1
 ```
 
 All matches played in the preliminary contests are automatically recorded and the most recent ones can be viewed on the contest site. You are also able to download the history associated with each replay.
@@ -389,7 +435,7 @@ All matches played in the preliminary contests are automatically recorded and th
 
 ## How does one check if a given agent is currently scared? Is the only option to check the number of capsules in previous states?
 
-```
+```python
 GetAgentState(self.index).scaredTimer
 ```
 
