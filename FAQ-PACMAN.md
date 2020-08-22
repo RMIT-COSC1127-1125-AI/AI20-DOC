@@ -33,7 +33,6 @@ Table of Contents
   * [I am getting too many expansions. What counts as an expansion?](#i-am-getting-too-many-expansions-what-counts-as-an-expansion)
 * [Project 2](#project-2)
   * [Inconsistent depth in minimax project 2, Q2 and careful use of __init__](#inconsistent-depth-in-minimax-project-2-q2-and-careful-use-of-__init__)
-
   * [Can we apply a "magic number" such as -9999 in our evaluation functions, as part of our logic not simply an arbitrary "return -9999"?](#can-we-apply-a-magic-number-such-as--9999-in-our-evaluation-functions-as-part-of-our-logic-not-simply-an-arbitrary-return--9999)
 * [Capture the Flag](#capture-the-flag)
   * [How to load my additional files beyond myTeam.py?](#how-to-load-my-additional-files-beyond-myteampy)
