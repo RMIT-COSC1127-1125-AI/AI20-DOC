@@ -33,7 +33,8 @@ Table of Contents
   * [I am getting too many expansions. What counts as an expansion?](#i-am-getting-too-many-expansions-what-counts-as-an-expansion)
 * [Project 2](#project-2)
   * [Inconsistent depth in minimax project 2, Q2 and careful use of __init__](#inconsistent-depth-in-minimax-project-2-q2-and-careful-use-of-__init__)
-  * [Will we bemarked down for applying a "magic number" such as -9999 in our evaluation functions, as part of our logic not simply an abritrary "return -9999"?](#will-we-bemarked-down-for-applying-a-magic-number-such-as--9999-in-our-evaluation-functions-as-part-of-our-logic-not-simply-an-abritrary-return--9999)
+
+  * [Can we apply a "magic number" such as -9999 in our evaluation functions, as part of our logic not simply an arbitrary "return -9999"?](#can-we-apply-a-magic-number-such-as--9999-in-our-evaluation-functions-as-part-of-our-logic-not-simply-an-arbitrary-return--9999)
 * [Capture the Flag](#capture-the-flag)
   * [How to load my additional files beyond myTeam.py?](#how-to-load-my-additional-files-beyond-myteampy)
   * [How can I use the FF planner (or any other binary) you provide?](#how-can-i-use-the-ff-planner-or-any-other-binary-you-provide)
@@ -374,7 +375,7 @@ super().__init__(**kwargs)
 
 More details about super can be found [here](https://stackoverflow.com/questions/2399307/how-to-invoke-the-super-constructor-in-python) (although it lacks discussion of arguments), and details about kwargs [here](https://stackoverflow.com/questions/3394835/use-of-args-and-kwargs)
 
-## Will we bemarked down for applying a "magic number" such as -9999 in our evaluation functions, as part of our logic not simply an abritrary "return -9999"?
+## Can we apply a "magic number" such as -9999 in our evaluation functions, as part of our logic not simply an arbitrary "return -9999"?
 
 You would not be marked down for using a number like that - however if you really want a very large number, you might consider using `math.inf` instead, or even `float('inf')`.
 
