@@ -376,7 +376,7 @@ More details about super can be found [here](https://stackoverflow.com/questions
 
 ## Will we bemarked down for applying a "magic number" such as -9999 in our evaluation functions, as part of our logic not simply an abritrary "return -9999"?
 
-You would not be marked down for using a number like that - however if you really want a very large number, you might consider using `math.inf` instead, or even ``float('inf')`.
+You would not be marked down for using a number like that - however if you really want a very large number, you might consider using `math.inf` instead, or even `float('inf')`.
 
 
 -----------------
