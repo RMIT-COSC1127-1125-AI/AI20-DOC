@@ -8,39 +8,40 @@ As any FAQ page, this page is always "under construction". As we realize that so
 Table of Contents
 =================
 
-* [GENERAL](#general)
-  * [In a code assignment/project, how do I make sure I do not go against academic integrity?](#in-a-code-assignmentproject-how-do-i-make-sure-i-do-not-go-against-academic-integrity)
-  * [Cannot access the Google Form, says I need permission](#cannot-access-the-google-form-says-i-need-permission)
-  * [How do I submit my project solution in my GIT repository?](#how-do-i-submit-my-project-solution-in-my-git-repository)
-  * [How do I change the submission tag if I have already tagged one commit for submission?](#how-do-i-change-the-submission-tag-if-i-have-already-tagged-one-commit-for-submission)
-  * [I submitted wrongly (e.g., didn't tag correctly) and is now after the due date, can you consider my submission?](#i-submitted-wrongly-eg-didnt-tag-correctly-and-is-now-after-the-due-date-can-you-consider-my-submission)
-  * [How do I zip files in folder X without including the folder X itself?](#how-do-i-zip-files-in-folder-x-without-including-the-folder-x-itself)
-* [PACMAN SETUP](#pacman-setup)
-  * [What is the best way to develop my solutions for the Pacman project?](#what-is-the-best-way-to-develop-my-solutions-for-the-pacman-project)
-  * [What version of Python should I use?](#what-version-of-python-should-i-use)
-  * [How do I run Python 3.6 in coreteaching?](#how-do-i-run-python-36-in-coreteaching)
-  * [How to run Pacman remotely from coreteaching?](#how-to-run-pacman-remotely-from-coreteaching)
-  * [Coreteaching? What is that?](#coreteaching-what-is-that)
-  * [How do I setup a system in Windows with Python 3.6?](#how-do-i-setup-a-system-in-windows-with-python-36)
-* [TROUBLESHOOTING](#troubleshooting)
-  * [Can I use problem._visited?](#can-i-use-problem_visited)
-  * [I get "_tkinter.TclError: no display name and no $DISPLAY environment variable" error when running in WSL or ssh](#i-get-_tkintertclerror-no-display-name-and-no-display-environment-variable-error-when-running-in-wsl-or-ssh)
-  * [Cannot run Pacman due to problems with Tkinter: "ImportError: No module named Tkinter"](#cannot-run-pacman-due-to-problems-with-tkinter-importerror-no-module-named-tkinter)
-  * [How do I know the type of a variable in Python?](#how-do-i-know-the-type-of-a-variable-in-python)
-  * [Error module 'cgi' has no attribute 'escape' when running autograder.pt](#error-module-cgi-has-no-attribute-escape-when-running-autograderpt)
-* [Project 1](#project-1)
-  * [What actions should I return in the search algorithms?](#what-actions-should-i-return-in-the-search-algorithms)
-  * [I am getting too many expansions. What counts as an expansion?](#i-am-getting-too-many-expansions-what-counts-as-an-expansion)
-* [Project 2](#project-2)
-  * [Inconsistent depth in minimax project 2, Q2 and careful use of __init__](#inconsistent-depth-in-minimax-project-2-q2-and-careful-use-of-__init__)
-  * [Can we apply a "magic number" such as -9999 in our evaluation functions, as part of our logic not simply an arbitrary "return -9999"?](#can-we-apply-a-magic-number-such-as--9999-in-our-evaluation-functions-as-part-of-our-logic-not-simply-an-arbitrary-return--9999)
-* [Capture the Flag](#capture-the-flag)
-  * [How to load my additional files beyond myTeam.py?](#how-to-load-my-additional-files-beyond-myteampy)
-  * [How can I use the FF planner (or any other binary) you provide?](#how-can-i-use-the-ff-planner-or-any-other-binary-you-provide)
-  * [Do you provide library X (e.g., tensorflow)?](#do-you-provide-library-x-eg-tensorflow)
-  * [Games go too fast! What should I do?](#games-go-too-fast-what-should-i-do)
-  * [How do I replay a game?](#how-do-i-replay-a-game)
-  * [How does one check if a given agent is currently scared? Is the only option to check the number of capsules in previous states?](#how-does-one-check-if-a-given-agent-is-currently-scared-is-the-only-option-to-check-the-number-of-capsules-in-previous-states)
+   * [GENERAL](#general)
+      * [In a code assignment/project, how do I make sure I do not go against academic integrity?](#in-a-code-assignmentproject-how-do-i-make-sure-i-do-not-go-against-academic-integrity)
+      * [Cannot access the Google Form, says I need permission](#cannot-access-the-google-form-says-i-need-permission)
+      * [How do I submit my project solution in my GIT repository?](#how-do-i-submit-my-project-solution-in-my-git-repository)
+      * [How do I change the submission tag if I have already tagged one commit for submission?](#how-do-i-change-the-submission-tag-if-i-have-already-tagged-one-commit-for-submission)
+      * [I submitted wrongly (e.g., didn't tag correctly) and is now after the due date, can you consider my submission?](#i-submitted-wrongly-eg-didnt-tag-correctly-and-is-now-after-the-due-date-can-you-consider-my-submission)
+      * [Project specification says "You should code your implantation only at the locations ...." . Does this mean that we can't create our custom classes outside the provided functions?](#project-specification-says-you-should-code-your-implantation-only-at-the-locations---does-this-mean-that-we-cant-create-our-custom-classes-outside-the-provided-functions)
+      * [How do I zip files in folder X without including the folder X itself?](#how-do-i-zip-files-in-folder-x-without-including-the-folder-x-itself)
+   * [PACMAN SETUP](#pacman-setup)
+      * [What is the best way to develop my solutions for the Pacman project?](#what-is-the-best-way-to-develop-my-solutions-for-the-pacman-project)
+      * [What version of Python should I use?](#what-version-of-python-should-i-use)
+      * [How do I run Python 3.6 in coreteaching?](#how-do-i-run-python-36-in-coreteaching)
+      * [How to run Pacman remotely from coreteaching?](#how-to-run-pacman-remotely-from-coreteaching)
+      * [Coreteaching? What is that?](#coreteaching-what-is-that)
+      * [How do I setup a system in Windows with Python 3.6?](#how-do-i-setup-a-system-in-windows-with-python-36)
+   * [TROUBLESHOOTING](#troubleshooting)
+      * [Can I use problem._visited?](#can-i-use-problem_visited)
+      * [I get "_tkinter.TclError: no display name and no $DISPLAY environment variable" error when running in WSL or ssh](#i-get-_tkintertclerror-no-display-name-and-no-display-environment-variable-error-when-running-in-wsl-or-ssh)
+      * [Cannot run Pacman due to problems with Tkinter: "ImportError: No module named Tkinter"](#cannot-run-pacman-due-to-problems-with-tkinter-importerror-no-module-named-tkinter)
+      * [How do I know the type of a variable in Python?](#how-do-i-know-the-type-of-a-variable-in-python)
+      * [Error module 'cgi' has no attribute 'escape' when running autograder.pt](#error-module-cgi-has-no-attribute-escape-when-running-autograderpt)
+   * [Project 1](#project-1)
+      * [What actions should I return in the search algorithms?](#what-actions-should-i-return-in-the-search-algorithms)
+      * [I am getting too many expansions. What counts as an expansion?](#i-am-getting-too-many-expansions-what-counts-as-an-expansion)
+   * [Project 2](#project-2)
+      * [Inconsistent depth in minimax project 2, Q2 and careful use of __init__](#inconsistent-depth-in-minimax-project-2-q2-and-careful-use-of-__init__)
+      * [Can we apply a "magic number" such as -9999 in our evaluation functions, as part of our logic not simply an arbitrary "return -9999"?](#can-we-apply-a-magic-number-such-as--9999-in-our-evaluation-functions-as-part-of-our-logic-not-simply-an-arbitrary-return--9999)
+   * [Capture the Flag](#capture-the-flag)
+      * [How to load my additional files beyond myTeam.py?](#how-to-load-my-additional-files-beyond-myteampy)
+      * [How can I use the FF planner (or any other binary) you provide?](#how-can-i-use-the-ff-planner-or-any-other-binary-you-provide)
+      * [Do you provide library X (e.g., tensorflow)?](#do-you-provide-library-x-eg-tensorflow)
+      * [Games go too fast! What should I do?](#games-go-too-fast-what-should-i-do)
+      * [How do I replay a game?](#how-do-i-replay-a-game)
+      * [How does one check if a given agent is currently scared? Is the only option to check the number of capsules in previous states?](#how-does-one-check-if-a-given-agent-is-currently-scared-is-the-only-option-to-check-the-number-of-capsules-in-previous-states)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -107,6 +108,13 @@ It used to be the case that GitHub web interface did not allow deleting tags (th
 We will not fix any submission and it is your responsability to do it correctly.
 
 However, the nice thing about git-based projects/assessments is that we can rely on commits. If you have submitted your tag incorrectly (did not tag it at all, tagged with different name or different capital letters), then please fix your submission by tagging the specific commit you want me to mark. I will use the timestamp of the commit itself, not of when it was tagged. This means that if the commit was done before the deadline, then all good!! Isn't this cool?
+
+
+## Project specification says "You should code your implantation only at the locations ...." . Does this mean that we can't create our custom classes outside the provided functions?
+
+Yes, you can create some help functions or classes, but **always** in the allowed files. Any other change in any other file will be totally ignored.
+
+If you want to create custom classes and functions, you can also nest them inside the location where you read `***YOUR CODE HERE***`. See [this link](https://www.datacamp.com/community/tutorials/inner-classes-python) and [this link](https://www.programiz.com/python-programming/closure#:~:text=A%20function%20defined%20inside%20another,in%20order%20to%20modify%20them) for more info.
 
 
 ## How do I zip files in folder X without including the folder X itself?
