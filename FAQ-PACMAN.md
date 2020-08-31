@@ -42,6 +42,7 @@ Table of Contents
       * [Games go too fast! What should I do?](#games-go-too-fast-what-should-i-do)
       * [How do I replay a game?](#how-do-i-replay-a-game)
       * [How does one check if a given agent is currently scared? Is the only option to check the number of capsules in previous states?](#how-does-one-check-if-a-given-agent-is-currently-scared-is-the-only-option-to-check-the-number-of-capsules-in-previous-states)
+      * [It looks like the distance calculator is performing calculations in the background of our turns, can we replace it with our own version that does more?](#it-looks-like-the-distance-calculator-is-performing-calculations-in-the-background-of-our-turns-can-we-replace-it-with-our-own-version-that-does-more)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -451,4 +452,13 @@ All matches played in the preliminary contests are automatically recorded and th
 ```python
 GetAgentState(self.index).scaredTimer
 ```
+
+##  It looks like the distance calculator is performing calculations in the background of our turns, can we replace it with our own version that does more?
+
+The short answer is **no**, you cannot replace or change that code, but you can create your own version that you use instead. For the long answer, keep reading.
+
+The premise to this question is a little off, the distancer is not doing any calculations on "your turns", it only calculates things _during the initialisation phase_. To be precise, that work is done during the `self.distancer.getMazeDistances()` call on line `105` of `captureAgents.py`, in the `registerInitialState` method of `CaptureAgent`. This will be called by all of your agents as you are subclassing `CaptureAgent`.
+ 
+This shouldn't be an issue, as it will only take less than 1 second of your 15 second initialisation time (and even then only 1 second for the first agent). 
+ After that, all the distances are cached, so you can get distances essentially for free in your code by calling `self.distancer.getDistance(p1, p2)`.
 
