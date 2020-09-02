@@ -43,6 +43,7 @@ Table of Contents
       * [How do I replay a game?](#how-do-i-replay-a-game)
       * [How does one check if a given agent is currently scared? Is the only option to check the number of capsules in previous states?](#how-does-one-check-if-a-given-agent-is-currently-scared-is-the-only-option-to-check-the-number-of-capsules-in-previous-states)
       * [It looks like the distance calculator is performing calculations in the background of our turns, can we replace it with our own version that does more?](#it-looks-like-the-distance-calculator-is-performing-calculations-in-the-background-of-our-turns-can-we-replace-it-with-our-own-version-that-does-more)
+      * [Can we re-use code from Project 2?](#can-we-re-use-code-from-project-2)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -461,4 +462,13 @@ The premise to this question is a little off, the distancer is not doing any cal
  
 This shouldn't be an issue, as it will only take less than 1 second of your 15 second initialisation time (and even then only 1 second for the first agent). 
  After that, all the distances are cached, so you can get distances essentially for free in your code by calling `self.distancer.getDistance(p1, p2)`.
+
+## Can we re-use code from Project 2?
+
+If you were part of the team for Project 2, then yes, but you need to be careful how.
+
+What you need to ask yourself is: _Was any of the team members for the contest an author of the code you want to re-use for the contest?_ 
+
+* If _yes_, and this was clearly stated in the previous project Certification form, then you can re-use it as is, no problem! 
+* _Otherwise_, if it was done by someone else outside the current contest team, then you should be careful as none of the current members can claim ownership of that solution. You may re-use the idea but you would need to re-implement and very clearly acknowledge that the technique came from someone else. Hopefully your system will not just be that, and you will add value to it.
 
