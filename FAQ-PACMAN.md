@@ -44,6 +44,7 @@ Table of Contents
       * [How does one check if a given agent is currently scared? Is the only option to check the number of capsules in previous states?](#how-does-one-check-if-a-given-agent-is-currently-scared-is-the-only-option-to-check-the-number-of-capsules-in-previous-states)
       * [It looks like the distance calculator is performing calculations in the background of our turns, can we replace it with our own version that does more?](#it-looks-like-the-distance-calculator-is-performing-calculations-in-the-background-of-our-turns-can-we-replace-it-with-our-own-version-that-does-more)
       * [Can we re-use code from Project 2?](#can-we-re-use-code-from-project-2)
+      * [Ugly rendering of graphics under MacOs?](#ugly-rendering-of-graphics-under-macos)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -472,3 +473,11 @@ What you need to ask yourself is: _Was any of the team members for the contest a
 * If _yes_, and this was clearly stated in the previous project Certification form, then you can re-use it as is, no problem! 
 * _Otherwise_, if it was done by someone else outside the current contest team, then you should be careful as none of the current members can claim ownership of that solution. You may re-use the idea but you would need to re-implement and very clearly acknowledge that the technique came from someone else. Hopefully your system will not just be that, and you will add value to it.
 
+## Ugly rendering of graphics under MacOs?
+
+Some students have reported some stranger rendering of the graphics:
+
+![bad-graphics](img/bad-pacman-rendering-macos.png)
+
+
+Some have reported that by clicking and slightly moving the window stops the game from repainting poorly. Also by using Python 3.8, though the game speed seems slower and one has to then make sure everything runs under 3.6 as expected.
