@@ -309,7 +309,7 @@ The problem seems to be that the default `gcc` in Mac is set to be `clang`. So, 
 make CC=/usr/local/bin/gcc-7
 ```
 
-
+Thanks Banhao!
 
 
 -----------------
