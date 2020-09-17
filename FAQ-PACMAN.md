@@ -589,4 +589,5 @@ step    0: GO P_1_9 P_1_10
 ...
 ```
 
+Of course, all the above can be adapted to run other planners or even other external tools.
 
