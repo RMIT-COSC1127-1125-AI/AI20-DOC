@@ -46,8 +46,7 @@ Table of Contents
       * [It looks like the distance calculator is performing calculations in the background of our turns, can we replace it with our own version that does more?](#it-looks-like-the-distance-calculator-is-performing-calculations-in-the-background-of-our-turns-can-we-replace-it-with-our-own-version-that-does-more)
       * [Can we re-use code from Project 2?](#can-we-re-use-code-from-project-2)
       * [Ugly rendering of graphics under MacOs?](#ugly-rendering-of-graphics-under-macos)
-      * [How to call a planner?](#how-to-call-a-planner)
-
+      * [How to call a planner (or another external tool)?](#how-to-call-a-planner-or-another-external-tool)
 
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
@@ -502,11 +501,13 @@ Some have reported that by clicking and slightly moving the window stops the gam
 
 
 
-## How to call a planner?
+## How to call a planner (or another external tool)?
 
 Suppose you have [`ff` planner](https://fai.cs.uni-saarland.de/hoffmann/ff.html) up and running in your machine. How do I call it from my Python code and extract the plan from its solution?
 
-irst, whatever external call is used, it **cannot be done** in another concurrent thread: your agent must _block and wait_ for the external code to finish. Remember that it is against the rules of the game to spawn concurrent threads. You can ran external commands (and wait for them to return) using [`os.system(command)`](https://docs.python.org/3/library/os.html#os.system) or the more preferred one [`subprocess.run(command)`](https://docs.python.org/3/library/subprocess.html#subprocess.run). We will explain the latter here, as it is now a more preferred approach as per Python doc.
+First, whatever external call is used, it **cannot be done** in another concurrent thread: your agent must _block and wait_ for the external code to finish. Remember that it is against the rules of the game to spawn concurrent threads. You can ran external commands (and wait for them to return) using [`os.system(command)`](https://docs.python.org/3/library/os.html#os.system) or the more preferred one [`subprocess.run(command)`](https://docs.python.org/3/library/subprocess.html#subprocess.run). We will explain the latter here, as it is now a more preferred approach as per Python doc.
+
+**NOTE:** Please do not use `popen`. This is a non-blocking command which might leave things running on the server after your turn has finished, which will lead to your disqualification!
 
 Suppose your code generates the specific `domain.pddl` and `problem.pddl` files that you want to use the planner on.  We are assuming these files, and the `ff` executable, are all in the same folder as `myTeam.py`.
 
