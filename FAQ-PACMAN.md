@@ -29,6 +29,7 @@ Table of Contents
       * [Cannot run Pacman due to problems with Tkinter: "ImportError: No module named Tkinter"](#cannot-run-pacman-due-to-problems-with-tkinter-importerror-no-module-named-tkinter)
       * [How do I know the type of a variable in Python?](#how-do-i-know-the-type-of-a-variable-in-python)
       * [Error module 'cgi' has no attribute 'escape' when running autograder.pt](#error-module-cgi-has-no-attribute-escape-when-running-autograderpt)
+      * [Cannot compile Metric-FF in MacOS](#cannot-compile-metric-ff-in-macos)
    * [Project 1](#project-1)
       * [What actions should I return in the search algorithms?](#what-actions-should-i-return-in-the-search-algorithms)
       * [I am getting too many expansions. What counts as an expansion?](#i-am-getting-too-many-expansions-what-counts-as-an-expansion)
@@ -45,6 +46,9 @@ Table of Contents
       * [It looks like the distance calculator is performing calculations in the background of our turns, can we replace it with our own version that does more?](#it-looks-like-the-distance-calculator-is-performing-calculations-in-the-background-of-our-turns-can-we-replace-it-with-our-own-version-that-does-more)
       * [Can we re-use code from Project 2?](#can-we-re-use-code-from-project-2)
       * [Ugly rendering of graphics under MacOs?](#ugly-rendering-of-graphics-under-macos)
+      * [How to call a planner?](#how-to-call-a-planner)
+
+
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -293,6 +297,20 @@ Check this video to know how to print the type of a variable in Python:
 You are probably not using Python 3.6 but a higher version. Check [this post](https://piazza.com/class/kbsmlzxg3k7418?cid=28).
 
 
+## Cannot compile Metric-FF in MacOS
+
+Some Mac users have reported this error when compiling [Metric-FF](https://fai.cs.uni-saarland.de/hoffmann/metric-ff.html) planner:
+
+![bad-graphics](img/ff-compile-mac.png)
+
+The problem seems to be that the default `gcc` in Mac is set to be `clang`. So, you first neeed to install standard `gcc` on using command `brew install gcc@7`  (must use version 7, newest version 10 won't work) and instead of just `make`, you need to run:
+
+```bash
+make CC=/usr/local/bin/gcc-7
+```
+
+
+
 
 -----------------
 # Project 1
@@ -405,7 +423,7 @@ This means that if you import from other files outside `myTeam.py` they will not
 
 ```python
 import sys
-sys.path.append(&rsquo;teams/<your team>/&rsquo;)
+sys.path.append(teams/<your team>/)
 ```
 
 Now, the best way is to automatically obtain the folder where your file myTeam.py is located when playing the game, and then use that folder. You can do that using:
@@ -419,13 +437,13 @@ Now you can use variable cd itself, that is where your `myTeam.py` is located. C
 
 ## How can I use the FF planner (or any other binary) you provide?
 
-The FF planner is located in the bin/ subdirectory of the root pacman contest directory. This means that, relative to your team, it is in ../../bin/ff
+The FF planner is located in the bin/ subdirectory of the root pacman contest directory. This means that, relative to your team, it is in `../../bin/ff`
 
-Basically, if you have problem.pddl and want to write the plan into solution.txt you can do:
+Basically, if you have `problem.pddl` and want to write the plan into `solution.txt` you can do:
 
 ```python
-os.system("{}/../../bin/ff -o {}/domain.pddl -f {}/problem%d.pddl >
-{}/solution{}.txt".format(cd,cd,cd,self.index,cd,self.index) );
+os.system(f"{cd}/../../bin/ff -o {cd}/domain.pddl -f {cd}/problem.pddl >
+{cd}/solution.txt" );
 ```
 
 Note that the same technique would apply for any other binary that is provided system wide by the contest organizers.
@@ -481,3 +499,94 @@ Some students have reported some stranger rendering of the graphics:
 
 
 Some have reported that by clicking and slightly moving the window stops the game from repainting poorly. Also by using Python 3.8, though the game speed seems slower and one has to then make sure everything runs under 3.6 as expected.
+
+
+
+## How to call a planner?
+
+Suppose you have [`ff` planner](https://fai.cs.uni-saarland.de/hoffmann/ff.html) up and running in your machine. How do I call it from my Python code and extract the plan from its solution?
+
+irst, whatever external call is used, it **cannot be done** in another concurrent thread: your agent must _block and wait_ for the external code to finish. Remember that it is against the rules of the game to spawn concurrent threads. You can ran external commands (and wait for them to return) using [`os.system(command)`](https://docs.python.org/3/library/os.html#os.system) or the more preferred one [`subprocess.run(command)`](https://docs.python.org/3/library/subprocess.html#subprocess.run). We will explain the latter here, as it is now a more preferred approach as per Python doc.
+
+Suppose your code generates the specific `domain.pddl` and `problem.pddl` files that you want to use the planner on.  We are assuming these files, and the `ff` executable, are all in the same folder as `myTeam.py`.
+
+Here is a template using `subprocess.run()`:
+
+```python
+import os
+import subprocess
+
+def call_ff(domain, problem):
+    cd = os.path.dirname(os.path.abspath(__file__))
+    cmd = [f"{cd}/ff", "-o", f"{cd}/{domain}", "-f", f"{cd}/{problem}"]
+
+    result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+
+    return result.stdout.splitlines() if result.returncode == 0 else None
+```
+
+This will return a list of lines representing the output of `ff,` which can in turn be processed to extract the plan. For example:
+
+```python
+output = call_ff('domain.pddl', `problem.pddl')
+plan = parse_ff_output(output)
+
+if plan is not None:
+    print(plan)
+    if plan:
+        print(extract_loc(plan[0]))
+else:
+    print('No plan!')
+```
+
+
+This is the function I use to extract the plan from `ff`'s output:
+
+```python
+def parse_ff_output(lines):
+    plan = []
+    for line in lines:
+        search_action = re.search(r'\d: (.*)$', line)
+        if search_action:
+            plan.append(search_action.group(1))
+
+        # Empty Plan
+        if line.find("ff: goal can be simplified to TRUE.") != -1:
+            return []
+        # No Plan
+        if line.find("ff: goal can be simplified to FALSE.") != -1:
+            return None
+
+    if len(plan) > 0:
+        return plan
+    else:
+        print('should never have ocurred!')
+        return None
+```
+
+If there is no plan, a null object will be returned. If a plan was found, a list of actions will be given; for example:
+
+```
+['GO P_1_9 P_1_10', 'GO P_1_10 P_1_11', 'GO P_1_11 P_1_12', 'GO P_1_12 P_1_13', 'GO P_1_13 P_1_14', 'GO P_1_14 P_2_14', 'GO P_2_14 P_3_14', 'GO P_3_14 P_3_13', 'GO P_3_13 P_3_12', 'GO P_3_12 P_3_11', 'GO P_3_11 P_3_10', 'GO P_3_10 P_4_10', 'GO P_4_10 P_4_9', 'GO P_4_9 P_4_8', 'GO P_4_8 P_4_7', 'GO P_4_7 P_5_7', 'GO P_5_7 P_5_6', 'GO P_5_6 P_5_5', 'GO P_5_5 P_6_5', 'GO P_6_5 P_7_5', 'GO P_7_5 P_7_6', 'GO P_7_6 P_8_6', 'GO P_8_6 P_9_6', 'GO P_9_6 P_10_6', 'GO P_10_6 P_11_6', 'GO P_11_6 P_12_6', 'GO P_12_6 P_13_6', 'GO P_13_6 P_13_7', 'GO P_13_7 P_14_7', 'GO P_14_7 P_15_7', 'GO P_15_7 P_16_7', 'GO P_16_7 P_17_7', 'GO P_17_7 P_17_6', 'GO P_17_6 P_17_7', 'GO P_17_7 P_18_7', 'GO P_18_7 P_19_7', 'GO P_19_7 P_19_8', 'GO P_19_8 P_19_9', 'GO P_19_9 P_20_9', 'GO P_20_9 P_21_9', 'GO P_21_9 P_22_9', 'GO P_22_9 P_23_9', 'GO P_23_9 P_24_9', 'GO P_24_9 P_24_10', 'GO P_24_10 P_25_10']
+``` 
+
+This corresponds to an output containing these lines:
+
+```
+ff: found legal plan as follows
+
+step    0: GO P_1_9 P_1_10
+        1: GO P_1_10 P_1_11
+        2: GO P_1_11 P_1_12
+        3: GO P_1_12 P_1_13
+        4: GO P_1_13 P_1_14
+        5: GO P_1_14 P_2_14
+        6: GO P_2_14 P_3_14
+        7: GO P_3_14 P_3_13
+        8: GO P_3_13 P_3_12
+        9: GO P_3_12 P_3_11
+       10: GO P_3_11 P_3_10
+...
+```
+
+
