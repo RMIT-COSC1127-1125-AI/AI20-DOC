@@ -47,6 +47,7 @@ Table of Contents
       * [Can we re-use code from Project 2?](#can-we-re-use-code-from-project-2)
       * [Ugly rendering of graphics under MacOs?](#ugly-rendering-of-graphics-under-macos)
       * [How to call a planner (or another external tool)?](#how-to-call-a-planner-or-another-external-tool)
+      * [What does it mean that we must use 2/3 AI techniques? Do they all need to be part of the final submission?](#what-does-it-mean-that-we-must-use-23-ai-techniques-do-they-all-need-to-be-part-of-the-final-submission)
 
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
@@ -592,3 +593,8 @@ step    0: GO P_1_9 P_1_10
 
 Of course, all the above can be adapted to run other planners or even other external tools.
 
+## What does it mean that we must use 2/3 AI techniques? Do they all need to be part of the final submission?
+
+Your final submission should have >= 1 techniques, and your repo & experiments should have the code & analysis of all the techniques you tried. Which should be at least 2 or 3 depending on the size of the team.
+
+It's expected that some techniques that you try will not work well, so you can just report about them in your analysis. In terms of final submission, if you want to perform well, most likely you'll end up mixing a few techniques. 
