@@ -604,5 +604,7 @@ For example, some tools I have installed system-wide are:
     - The binary `mff` will point to the original `mff1` version.
 
 Again, please let me know if you want to use any other AI tool and we'll try to make it available!
+
+The FF and Metric-FF planners with the adapted sources as per cluster install can all be found [here](https://github.com/ssardina-planning/ff-planners). You can also found here pre-compiled versions for Linux, so you can use them off-the-shelf without needing to compile them.
  
 
