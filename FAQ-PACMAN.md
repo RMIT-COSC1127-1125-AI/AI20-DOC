@@ -46,7 +46,7 @@ Table of Contents
       * [Ugly rendering of graphics under MacOs?](#ugly-rendering-of-graphics-under-macos)
       * [How to call a planner like (like ff) or any another external tool?](#how-to-call-a-planner-like-like-ff-or-any-another-external-tool)
       * [What does it mean that we must use 2/3 AI techniques? Do they all need to be part of the final submission?](#what-does-it-mean-that-we-must-use-23-ai-techniques-do-they-all-need-to-be-part-of-the-final-submission)
-      * [Can I use library or program X (e.g., tensorflow or FF planner)?](#can-i-use-library-or-program-x-eg-tensorflow-or-ff-planner)
+      * [Can I use library or program X (e.g., tensorflow, FF planner, etc.)?](#can-i-use-library-or-program-x-eg-tensorflow-ff-planner-etc)
 
 
 
@@ -591,15 +591,17 @@ Your final submission should have >= 1 techniques, and your repo & experiments s
 It's expected that some techniques that you try will not work well, so you can just report about them in your analysis. In terms of final submission, if you want to perform well, most likely you'll end up mixing a few techniques. 
 
 
-## Can I use library or program X (e.g., tensorflow or FF planner)?
+## Can I use library or program X (e.g., tensorflow, FF planner, etc.)?
 
 If it is a "standard" or very "common" library, most probably yes. Otherwise you can check with me and we can work out to make sure it is available in the cluster.
 
 For example, some tools I have installed system-wide are:
 
 - `TensorFlow`, `keras`, `sklearn`, `numpy`, `scipy` and `neat-python` libraries.
-- The [FF planner](https://fai.cs.uni-saarland.de/hoffmann/ff.html) by just using the `ff` binary.
+- The [FF planner](https://fai.cs.uni-saarland.de/hoffmann/ff.html) version 2.3 with the corresponding variations: `ff2.3` (the original one), and `ff2.3-suda` and `ff2.3-goldman`. 
+    - The binary `ff` will point to the original `ff2.3` version.
 - The [Metric-FF planner](https://fai.cs.uni-saarland.de/hoffmann/metric-ff.html). Here there are a few versions, depending which one you have used in your local machine from the Metric-FF web site. The binaries in the cluster are: `mff1`, `mff2`, and `mff2.1` for versions 1.0 (the original used in the competition), 2.0 and 2.1, respectively.
+    - The binary `mff` will point to the original `mff1` version.
 
 Again, please let me know if you want to use any other AI tool and we'll try to make it available!
  
