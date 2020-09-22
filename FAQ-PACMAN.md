@@ -38,16 +38,16 @@ Table of Contents
       * [Can we apply a "magic number" such as -9999 in our evaluation functions, as part of our logic not simply an arbitrary "return -9999"?](#can-we-apply-a-magic-number-such-as--9999-in-our-evaluation-functions-as-part-of-our-logic-not-simply-an-arbitrary-return--9999)
    * [Capture the Flag](#capture-the-flag)
       * [How to load my additional files beyond myTeam.py?](#how-to-load-my-additional-files-beyond-myteampy)
-      * [How can I use the FF planner (or any other binary) you provide?](#how-can-i-use-the-ff-planner-or-any-other-binary-you-provide)
-      * [Do you provide library X (e.g., tensorflow)?](#do-you-provide-library-x-eg-tensorflow)
       * [Games go too fast! What should I do?](#games-go-too-fast-what-should-i-do)
       * [How do I replay a game?](#how-do-i-replay-a-game)
       * [How does one check if a given agent is currently scared? Is the only option to check the number of capsules in previous states?](#how-does-one-check-if-a-given-agent-is-currently-scared-is-the-only-option-to-check-the-number-of-capsules-in-previous-states)
       * [It looks like the distance calculator is performing calculations in the background of our turns, can we replace it with our own version that does more?](#it-looks-like-the-distance-calculator-is-performing-calculations-in-the-background-of-our-turns-can-we-replace-it-with-our-own-version-that-does-more)
       * [Can we re-use code from Project 2?](#can-we-re-use-code-from-project-2)
       * [Ugly rendering of graphics under MacOs?](#ugly-rendering-of-graphics-under-macos)
-      * [How to call a planner (or another external tool)?](#how-to-call-a-planner-or-another-external-tool)
+      * [How to call a planner like (like ff) or any another external tool?](#how-to-call-a-planner-like-like-ff-or-any-another-external-tool)
       * [What does it mean that we must use 2/3 AI techniques? Do they all need to be part of the final submission?](#what-does-it-mean-that-we-must-use-23-ai-techniques-do-they-all-need-to-be-part-of-the-final-submission)
+      * [Can I use library or program X (e.g., tensorflow or FF planner)?](#can-i-use-library-or-program-x-eg-tensorflow-or-ff-planner)
+
 
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
@@ -112,7 +112,7 @@ It used to be the case that GitHub web interface did not allow deleting tags (th
 
 ## I submitted wrongly (e.g., didn't tag correctly) and is now after the due date, can you consider my submission?
 
-We will not fix any submission and it is your responsability to do it correctly.
+We will not fix any submission and it is your responsibility to do it correctly.
 
 However, the nice thing about git-based projects/assessments is that we can rely on commits. If you have submitted your tag incorrectly (did not tag it at all, tagged with different name or different capital letters), then please fix your submission by tagging the specific commit you want me to mark. I will use the timestamp of the commit itself, not of when it was tagged. This means that if the commit was done before the deadline, then all good!! Isn't this cool?
 
@@ -435,23 +435,6 @@ cd = os.path.dirname(os.path.abspath(__file__))
 Now you can use variable cd itself, that is where your `myTeam.py` is located. Check [this post](https://stackoverflow.com/questions/9271464/what-does-the-file-variable-mean-do?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa) for more info and ideas.
 
 
-## How can I use the FF planner (or any other binary) you provide?
-
-The FF planner is located in the bin/ subdirectory of the root pacman contest directory. This means that, relative to your team, it is in `../../bin/ff`
-
-Basically, if you have `problem.pddl` and want to write the plan into `solution.txt` you can do:
-
-```python
-os.system(f"{cd}/../../bin/ff -o {cd}/domain.pddl -f {cd}/problem.pddl >
-{cd}/solution.txt" );
-```
-
-Note that the same technique would apply for any other binary that is provided system wide by the contest organizers.
-
-## Do you provide library X (e.g., tensorflow)?
-
-If it is a "standard" or very "common" library, most probably yes. Just send me an email and we will work out to make sure it is available in the cluster.
-
 ## Games go too fast! What should I do?
 
 Use the `--delay-step` option. Note that option is NOT available in the standard UC-Berkeley distribution; I have added it.
@@ -502,9 +485,17 @@ Some have reported that by clicking and slightly moving the window stops the gam
 
 
 
-## How to call a planner (or another external tool)?
+## How to call a planner like (like `ff`) or any another external tool?
 
-Suppose you have [`ff` planner](https://fai.cs.uni-saarland.de/hoffmann/ff.html) up and running in your machine. How do I call it from my Python code and extract the plan from its solution?
+We will provide some AI tools out-of-the-shelf for you to use if you want. These binaries will be available in the `PATH` so you can assume they will just run.
+
+For example, we will provide the [FF](https://fai.cs.uni-saarland.de/hoffmann/ff.html) and [Metric-FF](https://fai.cs.uni-saarland.de/hoffmann/metric-ff.html) planners. You can call them directly via `ff`, and  `mff1`, `mff2` or `mff2.1` (depending on the version). 
+
+Basically, if you have `problem.pddl` and want to write the plan into `solution.txt` you can do:
+
+Note that the same technique would apply for any other binary that is provided system wide by the contest organizers.
+
+So, for the rest of this question, suppose you have [`ff` planner](https://fai.cs.uni-saarland.de/hoffmann/ff.html) up and running in your machine. How do I call it from my Python code and extract the plan from its solution?
 
 First, whatever external call is used, it **cannot be done** in another concurrent thread: your agent must _block and wait_ for the external code to finish. Remember that it is against the rules of the game to spawn concurrent threads. You can ran external commands (and wait for them to return) using [`os.system(command)`](https://docs.python.org/3/library/os.html#os.system) or the more preferred one [`subprocess.run(command)`](https://docs.python.org/3/library/subprocess.html#subprocess.run). We will explain the latter here, as it is now a more preferred approach as per Python doc.
 
@@ -520,7 +511,7 @@ import subprocess
 
 def call_ff(domain, problem):
     cd = os.path.dirname(os.path.abspath(__file__))
-    cmd = [f"{cd}/ff", "-o", f"{cd}/{domain}", "-f", f"{cd}/{problem}"]
+    cmd = [f"ff", "-o", f"{cd}/{domain}", "-f", f"{cd}/{problem}"]
 
     result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
@@ -598,3 +589,18 @@ Of course, all the above can be adapted to run other planners or even other exte
 Your final submission should have >= 1 techniques, and your repo & experiments should have the code & analysis of all the techniques you tried. Which should be at least 2 or 3 depending on the size of the team.
 
 It's expected that some techniques that you try will not work well, so you can just report about them in your analysis. In terms of final submission, if you want to perform well, most likely you'll end up mixing a few techniques. 
+
+
+## Can I use library or program X (e.g., tensorflow or FF planner)?
+
+If it is a "standard" or very "common" library, most probably yes. Otherwise you can check with me and we can work out to make sure it is available in the cluster.
+
+For example, some tools I have installed system-wide are:
+
+- `TensorFlow`, `keras`, `sklearn`, `numpy`, `scipy` and `neat-python` libraries.
+- The [FF planner](https://fai.cs.uni-saarland.de/hoffmann/ff.html) by just using the `ff` binary.
+- The [Metric-FF planner](https://fai.cs.uni-saarland.de/hoffmann/metric-ff.html). Here there are a few versions, depending which one you have used in your local machine from the Metric-FF web site. The binaries in the cluster are: `mff1`, `mff2`, and `mff2.1` for versions 1.0 (the original used in the competition), 2.0 and 2.1, respectively.
+
+Again, please let me know if you want to use any other AI tool and we'll try to make it available!
+ 
+
