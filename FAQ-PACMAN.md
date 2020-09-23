@@ -451,6 +451,9 @@ $ python capture.py --replay BBC_vs_It_depends_contest18Capture.replay --delay-s
 
 All matches played in the preliminary contests are automatically recorded and the most recent ones can be viewed on the contest site. You are also able to download the history associated with each replay.
 
+A new script [replay.py](https://drive.google.com/drive/folders/1LaqFVayH4cLp3_QW3ar3RVQ4-KuMm9xb?usp=sharing) is provided as well that can be used to select which replay to run from a collection of replays (obtained from the contest site). This is an extended version of the one developed by student Thomas and hosted [here](https://github.com/itsjfx/pacman-contest-replay-player). This makes running replays much easier!
+
+
 
 ## How does one check if a given agent is currently scared? Is the only option to check the number of capsules in previous states?
 
