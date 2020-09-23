@@ -47,6 +47,7 @@ Table of Contents
       * [How to call a planner like (like ff) or any another external tool?](#how-to-call-a-planner-like-like-ff-or-any-another-external-tool)
       * [What does it mean that we must use 2/3 AI techniques? Do they all need to be part of the final submission?](#what-does-it-mean-that-we-must-use-23-ai-techniques-do-they-all-need-to-be-part-of-the-final-submission)
       * [Can I use library or program X (e.g., tensorflow, FF planner, etc.)?](#can-i-use-library-or-program-x-eg-tensorflow-ff-planner-etc)
+      * [I have performance problem with generateSuccessor in my search implementation, why?](#i-have-performance-problem-with-generatesuccessor-in-my-search-implementation-why)
 
 
 
@@ -607,4 +608,26 @@ Again, please let me know if you want to use any other AI tool and we'll try to 
 
 The FF and Metric-FF planners with the adapted sources as per cluster install can all be found [here](https://github.com/ssardina-planning/ff-planners). You can also found here pre-compiled versions for Linux, so you can use them off-the-shelf without needing to compile them.
  
+
+## I have performance problem with `generateSuccessor` in my search implementation, why?
+
+A student post a very interesting question:
+
+> I have a little performance issue regarding our A-star heuristic search agent performing on OfficeCapture. The behaviour is it stops 3-4 seconds to complete A-star search.
+
+> As investigated, most of the time was executed on the generateSuccessor method, which belongs to `capture.py` which is out of our control.
+
+> ![](img/getSuccessor-performance.png)
+
+First that is a great work on using profiling to look into this issue!
+
+If you look at what `generateSuccessor` is doing, you will see there is a fair amount of work going on. If you compare this to the search code used to generate maze distances in `distanceCalculator.py` (`computeDistances()`, line 110), you will see they aren't generating successors at all, but are still doing a search though the maze. You might want to consider whether that is an appropriate method to follow for your case. 
+
+One thing that one would like to see is how many calls are being made to `generateSuccessor` in each search. If you are seeing about 100 then that is plausible given the map size. If you are seeing thousands then it's likely you are double checking some cells and might need to tweak your algorithm.
+
+
+
+
+
+
 
