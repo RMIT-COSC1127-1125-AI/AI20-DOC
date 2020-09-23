@@ -49,6 +49,7 @@ Table of Contents
       * [Can I use library or program X (e.g., tensorflow, FF planner, etc.)?](#can-i-use-library-or-program-x-eg-tensorflow-ff-planner-etc)
       * [I have performance problem with generateSuccessor in my search implementation, why?](#i-have-performance-problem-with-generatesuccessor-in-my-search-implementation-why)
       * [I want to update an enemy position that's not in my sight range. I need to assign the position information in a copy of gameState. But I could only get an Agent Position not set.](#i-want-to-update-an-enemy-position-thats-not-in-my-sight-range-i-need-to-assign-the-position-information-in-a-copy-of-gamestate-but-i-could-only-get-an-agent-position-not-set)
+      * [The Berkeley site claims that observations are noisy unless the other agent is nearby, but when I call getAgentPosition it gives the exact location of any agent, including opponents.](#the-berkeley-site-claims-that-observations-are-noisy-unless-the-other-agent-is-nearby-but-when-i-call-getagentposition-it-gives-the-exact-location-of-any-agent-including-opponents)
 
 
 
@@ -634,3 +635,8 @@ One thing that one would like to see is how many calls are being made to `genera
 
 You can do anything you want with the `gameState` you receive - it's only a copy of the real one. 
 
+
+
+## The Berkeley site claims that observations are noisy unless the other agent is nearby, but when I call `getAgentPosition` it gives the exact location of any agent, including opponents. 
+
+This is true only during `registerInitialState`, but then returns `None` as expected during `chooseAction`, thus aligned with what the Berkeley site says.
