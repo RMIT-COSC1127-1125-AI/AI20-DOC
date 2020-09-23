@@ -48,6 +48,7 @@ Table of Contents
       * [What does it mean that we must use 2/3 AI techniques? Do they all need to be part of the final submission?](#what-does-it-mean-that-we-must-use-23-ai-techniques-do-they-all-need-to-be-part-of-the-final-submission)
       * [Can I use library or program X (e.g., tensorflow, FF planner, etc.)?](#can-i-use-library-or-program-x-eg-tensorflow-ff-planner-etc)
       * [I have performance problem with generateSuccessor in my search implementation, why?](#i-have-performance-problem-with-generatesuccessor-in-my-search-implementation-why)
+      * [I want to update an enemy position that's not in my sight range. I need to assign the position information in a copy of gameState. But I could only get an Agent Position not set.](#i-want-to-update-an-enemy-position-thats-not-in-my-sight-range-i-need-to-assign-the-position-information-in-a-copy-of-gamestate-but-i-could-only-get-an-agent-position-not-set)
 
 
 
@@ -626,8 +627,7 @@ If you look at what `generateSuccessor` is doing, you will see there is a fair a
 One thing that one would like to see is how many calls are being made to `generateSuccessor` in each search. If you are seeing about 100 then that is plausible given the map size. If you are seeing thousands then it's likely you are double checking some cells and might need to tweak your algorithm.
 
 
+## I want to update an enemy position that's not in my sight range. I need to assign the position information in a copy of `gameState`. But I could only get an Agent Position not set.
 
-
-
-
+You can do anything you want with the `gameState` you receive - it's only a copy of the real one. 
 
