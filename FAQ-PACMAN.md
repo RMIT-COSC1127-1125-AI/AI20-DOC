@@ -630,6 +630,8 @@ If you look at what `generateSuccessor` is doing, you will see there is a fair a
 
 One thing that one would like to see is how many calls are being made to `generateSuccessor` in each search. If you are seeing about 100 then that is plausible given the map size. If you are seeing thousands then it's likely you are double checking some cells and might need to tweak your algorithm.
 
+This shows that the transition function is not free :) and that there is a tradeoff between a good (informed) heuristic that reduces the number of generated nodes and the actual cost of that heuristic!
+
 
 ## I want to update an enemy position that's not in my sight range. I need to assign the position information in a copy of `gameState`. But I could only get an Agent Position not set.
 
