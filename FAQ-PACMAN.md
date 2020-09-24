@@ -416,26 +416,19 @@ You would not be marked down for using a number like that - however if you reall
 
 ## How to load my additional files beyond myTeam.py?
 
-Your code will be copied into a directory called teams/<your_teamname>/ in the contest package. Remember, your code will be run by the following command:
-
-```bash
-$ python3.6 capture.py -r teams/<team1>/myTeam.py -b teams/<team2>/myTeam.py
-```
-
-This means that if you import from other files outside `myTeam.py` they will not be found unless you tell Python to look in your team dir. You can do so by having the following code on top of your `myTeam.py`:
+You may have coded supported files that you will import in your `myTeam.py`, for example a module  `abc.py`. In order for the contest script to find it you need to do it this way:
 
 ```python
+import os
 import sys
-sys.path.append(teams/<your team>/)
-```
 
-Now, the best way is to automatically obtain the folder where your file myTeam.py is located when playing the game, and then use that folder. You can do that using:
-
-```python
 cd = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(cd)
+
+import abc 
 ```
 
-Now you can use variable cd itself, that is where your `myTeam.py` is located. Check [this post](https://stackoverflow.com/questions/9271464/what-does-the-file-variable-mean-do?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa) for more info and ideas.
+If you do not append that to the sys path, your `abc.py` module will not be found and your agent will crash.
 
 
 ## Games go too fast! What should I do?
