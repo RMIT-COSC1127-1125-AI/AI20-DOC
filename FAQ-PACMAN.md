@@ -517,7 +517,9 @@ def call_ff(domain, problem):
     return result.stdout.splitlines() if result.returncode == 0 else None
 ```
 
-This will return a list of lines representing the output of `ff,` which can in turn be processed to extract the plan. For example:
+**Note**: Before calling FF you will probably produce the corresponding PDDL problem file. Make sure that all that file has been generated in full and not partially. When you do a print on a file, it may not be printed right away due to buffers in the input-output system. So make sure you close the PDDL file so that you are guaranteed to have a complete file, that you can the use as the input to FF. Otherwise, you ran the risk that the PDDL file is incomplete (some lines have not yet made it to the file) and FF will give error.
+
+The above code will return a list of lines representing the output of `ff,` which can in turn be processed to extract the plan. For example:
 
 ```python
 output = call_ff('domain.pddl', `problem.pddl')
