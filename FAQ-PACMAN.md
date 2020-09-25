@@ -50,6 +50,8 @@ Table of Contents
       * [I have performance problem with generateSuccessor in my search implementation, why?](#i-have-performance-problem-with-generatesuccessor-in-my-search-implementation-why)
       * [I want to update an enemy position that's not in my sight range. I need to assign the position information in a copy of gameState. But I could only get an Agent Position not set.](#i-want-to-update-an-enemy-position-thats-not-in-my-sight-range-i-need-to-assign-the-position-information-in-a-copy-of-gamestate-but-i-could-only-get-an-agent-position-not-set)
       * [The Berkeley site claims that observations are noisy unless the other agent is nearby, but when I call getAgentPosition it gives the exact location of any agent, including opponents.](#the-berkeley-site-claims-that-observations-are-noisy-unless-the-other-agent-is-nearby-but-when-i-call-getagentposition-it-gives-the-exact-location-of-any-agent-including-opponents)
+      * [What does the "Score Balance" mean?](#what-does-the-score-balance-mean)
+      * [Is there any way to determine how long is left in a game? The Berkley spec it says 'games are limited to 1200 agent moves'. Will this limit also be the same for our tournament?](#is-there-any-way-to-determine-how-long-is-left-in-a-game-the-berkley-spec-it-says-games-are-limited-to-1200-agent-moves-will-this-limit-also-be-the-same-for-our-tournament)
 
 
 
@@ -69,7 +71,7 @@ If you see something like this:
 
 ![google-form](img/permission-google.png)
 
-then chances are you are not correctly logged into your RMIT account or you are logged with your private Google account and your browser cannot distinguish. Either open it on an incognito browser window or make sure you are logged into your RMIT account. There is nothing I can do from my side if you don&rsquo;t access the form with the right authentication credentials.
+then chances are you are not correctly logged into your uni account or you are logged with your private Google account and your browser cannot distinguish. Either open it on an incognito browser window or make sure you are logged into your uni account. There is nothing I can do from my side if you don&rsquo;t access the form with the right authentication credentials.
 
 
 ## How do I submit my project solution in my GIT repository?
@@ -637,3 +639,18 @@ You can do anything you want with the `gameState` you receive - it's only a copy
 ## The Berkeley site claims that observations are noisy unless the other agent is nearby, but when I call `getAgentPosition` it gives the exact location of any agent, including opponents. 
 
 This is true only during `registerInitialState`, but then returns `None` as expected during `chooseAction`, thus aligned with what the Berkeley site says.
+
+## What does the "Score Balance" mean?
+
+It mans the sum of your winning (or losing) margins. 
+
+E.g. You win one game by 20 points, then lose two by 4 points each. Your score balance is +12
+
+## Is there any way to determine how long is left in a game? The Berkley spec it says 'games are limited to 1200 agent moves'. Will this limit also be the same for our tournament? 
+
+Yes, our tournaments will be all of 1200 moves. But you can get the time left as follows:
+You can access `state.data.timeleft` if you want,
+
+```
+timeRemaining = gameState.data.timeleft  
+```
