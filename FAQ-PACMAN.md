@@ -52,6 +52,7 @@ Table of Contents
       * [The Berkeley site claims that observations are noisy unless the other agent is nearby, but when I call getAgentPosition it gives the exact location of any agent, including opponents.](#the-berkeley-site-claims-that-observations-are-noisy-unless-the-other-agent-is-nearby-but-when-i-call-getagentposition-it-gives-the-exact-location-of-any-agent-including-opponents)
       * [What does the "Score Balance" mean?](#what-does-the-score-balance-mean)
       * [Is there any way to determine how long is left in a game? The Berkley spec it says 'games are limited to 1200 agent moves'. Will this limit also be the same for our tournament?](#is-there-any-way-to-determine-how-long-is-left-in-a-game-the-berkley-spec-it-says-games-are-limited-to-1200-agent-moves-will-this-limit-also-be-the-same-for-our-tournament)
+      * [Can I override the X (e.g., <code>makeObservation()</code>) method of <code>CaptureAgent</code>?](#can-i-override-the-x-eg-makeobservation-method-of-captureagent)
 
 
 
@@ -654,3 +655,14 @@ You can access `state.data.timeleft` if you want,
 ```
 timeRemaining = gameState.data.timeleft  
 ```
+
+
+## Can I override the `X` (e.g., `makeObservation()`) method of `CaptureAgent`?
+
+No in general unless you get the explicit written permission from the teaching staff. 
+
+For example, if you override `makeObservation()` you would get to see beyond the rules of the game and have an unfair advantage, thus breaching the code of honor.
+
+As a rule of thumb, anything that makes you think twice whether it's permitted, most likely it isn't.  I'll check for cases of overriding the inherited functions. 
+
+If you want to do so nonetheless, you must get the written permission of the teaching staff to avoid breaching the code of honor.
