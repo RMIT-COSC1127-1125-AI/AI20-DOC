@@ -53,7 +53,7 @@ Table of Contents
       * [What does the "Score Balance" mean?](#what-does-the-score-balance-mean)
       * [Is there any way to determine how long is left in a game? The Berkley spec it says 'games are limited to 1200 agent moves'. Will this limit also be the same for our tournament?](#is-there-any-way-to-determine-how-long-is-left-in-a-game-the-berkley-spec-it-says-games-are-limited-to-1200-agent-moves-will-this-limit-also-be-the-same-for-our-tournament)
       * [Can I override the X (e.g., <code>makeObservation()</code>) method of <code>CaptureAgent</code>?](#can-i-override-the-x-eg-makeobservation-method-of-captureagent)
-
+      * [How to simulate opponent in MCTS?](#how-to-simulate-opponent-in-mcts)
 
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
@@ -666,3 +666,42 @@ For example, if you override `makeObservation()` you would get to see beyond the
 As a rule of thumb, anything that makes you think twice whether it's permitted, most likely it isn't.  I'll check for cases of overriding the inherited functions. 
 
 If you want to do so nonetheless, you must get the written permission of the teaching staff to avoid breaching the code of honor.
+
+
+
+##  How to simulate opponent in MCTS?
+
+(taken from Andrew's post [@281](https://piazza.com/class/kbsmlzxg3k7418?cid=281))
+
+There has been a few different conversations about how the enemy can be simulated in MCTS, so I thought I would collect a few different things in one place.
+
+A common problem is that if the opponent is out of sight, then `gameState.getLegalActions(opponentIndex)` will return an error.
+
+_Why is this?_
+
+Following the stack trace below, we can see that in order to get the legal actions, the function needs to know the position of the enemy agent, so it can figure out which walls are adjacent. Since the enemy's position has been set to None in your version of the gameState, this fails.
+
+ ```
+ File "capture.py", line 107, in getLegalActions
+    return AgentRules.getLegalActions( self, agentIndex )
+  File "capture.py", line 461, in getLegalActions
+    possibleActions = Actions.getPossibleActions( conf, state.data.layout.walls )
+  File "game.py", line 334, in getPossibleActions
+    x, y = config.pos
+AttributeError: 'NoneType' object has no attribute 'pos'
+```
+
+I just want it to make a random move, can't it do that without telling me the position?
+
+* Unfortunately no, because if you can call a function that at some stage looks up the position, you would be able to access that data directly if you tried. Also consider the following: you want to know where the opponent is so you ask for it to generate 100 random possible actions for that opponent. You can then conclude that whichever directions don't appear in that list are blocked by walls, giving you information about the position.
+
+**_Ok, so how do I make MCTS work then?_**
+
+There are a number of options, but first we must take a step back and understand how the game simulation is running. The simulator itself has access to the true game state, with all agents positions. When it is time for your turn, it makes a copy, removes information about the true positions for any opponents out of range, and then passes it to you in the `chooseAction` call (or more precisely the `getAction` call but that can be ignored). So your `gameState` object is a copy, which is not then used for anything else in terms of the simulator. What this means is that you can do anything you want to it!
+
+The standard MCTS algorithm assumes that the game is fully observable, so perhaps the most obvious this to do would be to pretend our game is fully observable. _How can we do that?_ Well, if you guess where the opponent is, you can 'place' the enemy there in your copy of gameState (the underlying data is hidden away in `gameState.data.agentStates[index].configuration.pos`). Having said this, it might not be the best idea to mess around with these deep internal variables. You might want to think about how you can 'pretend' the enemy is in that position without changing the actual gameState. This will depend on what exactly you are doing, because you might need a more or less accurate 'pretend scenario'.
+
+Another option is to run a variant of MCTS which is designed for use in partially observable settings. There is at least one algorithm which has been tried in the literature which you can research.
+
+Hope this helps, here are some links to other related posts: [@193](https://piazza.com/class/kbsmlzxg3k7418?cid=193) and [@199](https://piazza.com/class/kbsmlzxg3k7418?cid=199).
+
