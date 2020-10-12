@@ -594,6 +594,12 @@ Your final submission should have >= 1 techniques, and your repo & experiments s
 
 It's expected that some techniques that you try will not work well, so you can just report about them in your analysis. In terms of final submission, if you want to perform well, most likely you'll end up mixing a few techniques. 
 
+If you have made a good attempt to use a technique and decided against it and this is documented well on the Wiki, then that _will count_. What wouldn't count is you saying: _"Well, we tried planning but it didn't work"_. But if you say: 
+
+> "We tried planning and implemented it with X, Y and Z details. We submitted it to these contests, but the results were underwhelming as it timed out frequently. After trying to fix it with q and r, we decided to remove it from our final submission because of p. You can see the code in branch x and here are some experimental result that convinced us it was not worth it..." 
+
+then that is a good submission that will count as an AI technique. 
+
 
 ## Can I use library or program X (e.g., tensorflow, FF planner, etc.)?
 
