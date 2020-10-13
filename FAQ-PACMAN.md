@@ -54,7 +54,7 @@ Table of Contents
       * [Is there any way to determine how long is left in a game? The Berkley spec it says 'games are limited to 1200 agent moves'. Will this limit also be the same for our tournament?](#is-there-any-way-to-determine-how-long-is-left-in-a-game-the-berkley-spec-it-says-games-are-limited-to-1200-agent-moves-will-this-limit-also-be-the-same-for-our-tournament)
       * [Can I override the X (e.g., <code>makeObservation()</code>) method of <code>CaptureAgent</code>?](#can-i-override-the-x-eg-makeobservation-method-of-captureagent)
       * [How to simulate opponent in MCTS?](#how-to-simulate-opponent-in-mcts)
-
+      * [The option --numTraining (or <code>-x</code>) option does not work, why?](#the-option---numtraining-or--x-option-does-not-work-why)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
@@ -711,3 +711,49 @@ Another option is to run a variant of MCTS which is designed for use in partiall
 
 Hope this helps, here are some links to other related posts: [@193](https://piazza.com/class/kbsmlzxg3k7418?cid=193) and [@199](https://piazza.com/class/kbsmlzxg3k7418?cid=199).
 
+
+## The option `--numTraining` (or `-x`) option does not work, why?
+
+We also wondered... here is the answer:
+
+The simplest way to run multiple games for training purposes is with the following command: 
+
+```pyton
+python3 capture.py --numGames 100 --quiet --delay-step 0
+```
+
+When using the  `--numTraining` argument, a new parameter is passed to your `createTeam()` method in `myTeam.py`, that is, unexpected and so can cause an error. 
+
+To fix this, simply add a numTraining argument with a suitable default value:
+
+```python
+def createTeam(firstIndex, secondIndex, isRed,
+               first = 'DummyAgent', second = 'DummyAgent', numTraining = 0):
+```
+
+The option `--numTraining` does not actually run multiple games, it just suppresses output for those number of games. 
+
+So, the option is supposed to be used in conjunction with the `--numGames` argument which does specify the number of games to run. So, you would do something like:
+
+```python
+python3 capture.py --numGames 1010 --numTraining 1000
+```
+
+to run 1010 games, of which the first 1000 will not be displayed graphically as they are counted as "training games". 
+
+If you don't want to see any results, you can avoid `--numTraining` entirely and run: 
+
+```python
+python capture.py --numGames 1010 --quiet --delay-step 0
+```
+
+If you set `--numTraining` to be greater or equal to `--numGames`, your code will _fail_ at the very end with the error:
+
+```python
+    Traceback (most recent call last):
+      File "capture.py", line 1117, in <module>
+        save_score(games[0])
+    IndexError: list index out of range
+```
+
+This is not a big problem, as it is after all your games have run and training has already occurred. However, if it bothers you (and it should bother you! ;-) ), you can comment out line 1116 in `capture.py` to fix it: `(save_score(games[0]))`.
